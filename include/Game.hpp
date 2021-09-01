@@ -1,11 +1,9 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#define INCLUDE_SDL_IMAGE 
-#define INCLUDE_SDL_MIXER
+#define INCLUDE_SDL
 #include "SDL_include.h"
 
-#include <SDL2/SDL.h>
 #include "State.hpp"
 
 class Game
