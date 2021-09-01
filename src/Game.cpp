@@ -26,6 +26,7 @@ Game::Game(int width, int height, const char* title) {
         std::cout << "Erro Mix_init" << SDL_GetError() << std::endl;
         std::cin.get();
     }
+
     if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024)) {
         std::cout << "Erro ao inicializar OpenAudio" << SDL_GetError() << std::endl;
     }
@@ -47,9 +48,9 @@ Game::Game(int width, int height, const char* title) {
 }
 
 Game::~Game() {
-    SDL_DestroyRenderer(this->renderer);
+    SDL_DestroyRenderer(renderer);
 
-    SDL_DestroyWindow(this->window);
+    SDL_DestroyWindow(window);
 
     Mix_CloseAudio();
     Mix_Quit();
