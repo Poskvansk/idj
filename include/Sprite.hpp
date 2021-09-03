@@ -1,11 +1,12 @@
-#ifndef _SPRITE_HPP
-#define _SPRITE_HPP
+#ifndef SPRITE_HPP
+#define SPRITE_HPP
 
 #define INCLUDE_SDL_IMAGE 
 #include "SDL_include.h"
 
-class Sprite
-{
+#include "Component.hpp"
+
+class Sprite {
     private:
         SDL_Texture* texture;
         int width;

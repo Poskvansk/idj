@@ -6,8 +6,7 @@
 
 #include "State.hpp"
 
-class Game
-{
+class Game {
     private:
         static Game* instance;
         SDL_Window* window;

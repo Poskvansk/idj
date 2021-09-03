@@ -1,11 +1,10 @@
-#ifndef _MUSIC_HPP
-#define _MUSIC_HPP
+#ifndef MUSIC_HPP
+#define MUSIC_HPP
 
 #define INCLUDE_SDL_MIXER
 #include "SDL_include.h"
 
-class Music
-{
+class Music {
     private:
         Mix_Music* music;
     public:

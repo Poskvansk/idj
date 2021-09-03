@@ -6,7 +6,7 @@ Music::Music() {
 }
 
 Music::Music(const char* file) {
-    Music();
+    music = nullptr;
     if (music == nullptr) {
         Open(file);
     }

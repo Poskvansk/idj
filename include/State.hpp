@@ -1,11 +1,10 @@
-#ifndef _STATE_HPP
-#define _STATE_HPP
+#ifndef STATE_HPP
+#define STATE_HPP
 
 #include "Sprite.hpp"
 #include "Music.hpp"
 
-class State
-{
+class State {
     private:
         Sprite* bg;
         Music* music;
