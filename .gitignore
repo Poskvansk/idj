@@ -1,5 +1,7 @@
 bin/
 dep/
+.vscode/
+.vs/
 
 Makefile
 makefile

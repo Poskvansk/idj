@@ -44,6 +44,8 @@ Game::Game(int width, int height, const char* title) {
         std::cin.get();
     }
 
+    
+    srand(time(NULL));
     state = new State();
 }
 

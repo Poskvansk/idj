@@ -3,20 +3,28 @@
 
 #include "Component.hpp"
 #include "Rect.hpp"
+
 #include <string>
+#include <algorithm>
 #include <vector>
+#include <memory>
+
+class Component;
 
 class GameObject {
     private:
-        std::vector<Component*> components;
+        std::vector<std::unique_ptr<Component>> components;
         bool isDead;
+
     public:
         Rect box;
 
-        GameObject();
+        GameObject()
+            : isDead(false) {}
+
         ~GameObject();
 
-        void Update();
+        void Update(float dt);
         void Render();
         bool IsDead();
         void RequestDelete();

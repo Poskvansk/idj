@@ -5,6 +5,8 @@
 #include "SDL_include.h"
 
 #include "State.hpp"
+#include <cstdlib>
+#include <ctime>
 
 class Game {
     private:

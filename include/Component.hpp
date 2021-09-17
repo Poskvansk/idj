@@ -1,15 +1,18 @@
-#ifndef COMPONENTS_HPP
-#define COMPONENTS_HPP
+#ifndef COMPONENT_HPP
+#define COMPONENT_HPP
 
+#include "GameObject.hpp"
 #include <string>
 
 class GameObject;
 
 class Component {
     protected:
-        GameObject& associated;
+        GameObject &associated;
     public:
-        Component(GameObject& associated);
+        Component(GameObject &associated)
+            : associated(associated) {}
+
         virtual ~Component();
 
         void virtual Update(float dt) = 0;

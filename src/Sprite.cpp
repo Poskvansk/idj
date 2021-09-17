@@ -2,12 +2,7 @@
 #include "../include/Game.hpp"
 #include <iostream>
 
-Sprite::Sprite() {
-    texture = nullptr;
-}
-
-Sprite::Sprite(const char* file) {
-
+Sprite::Sprite(GameObject& associated, const char* file) : Component(associated) {
     texture = nullptr;
     Open(file);
 }
@@ -38,6 +33,9 @@ void Sprite::Open(const char* file) {
         std::cin.get();
     }
 
+    associated.box.h = height;
+    associated.box.w = width;
+
     SetClip(0, 0, width, height);
 }
 
@@ -48,16 +46,30 @@ void Sprite::SetClip(int x, int y, int w, int h) {
     clipRect.h = h;
 }
 
-void Sprite::Render(int x, int y) {
-    SDL_Rect dstrect;
-    dstrect.x = x;
-    dstrect.y = y;
-    dstrect.w = clipRect.w;
-    dstrect.h = clipRect.h;
+void Sprite::Render() {
 
-    if(SDL_RenderCopy(Game::GetInstance().GetRenderer(), this->texture, &clipRect, &dstrect)) {
+    SDL_Rect dstrect;
+
+    dstrect.x = associated.box.x;
+    dstrect.y = associated.box.y;
+    dstrect.w = associated.box.w;
+    dstrect.h = associated.box.h;
+
+    if (SDL_RenderCopy(Game::GetInstance().GetRenderer(), this->texture, &clipRect, &dstrect)) {
         std::cout << "Erro Render Copy" << SDL_GetError() << std::endl;
     }
+}
+
+void Sprite::Update(float dt) {
+
+}
+
+bool Sprite::Is(std::string type) {
+
+    if (type == "Sprite") {
+        return true;
+    }
+    return false;
 }
 
 int Sprite::GetWidth() {
