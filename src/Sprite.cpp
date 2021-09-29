@@ -1,5 +1,6 @@
 #include "../include/Sprite.hpp"
 #include "../include/Game.hpp"
+#include "../include/Resources.hpp"
 #include <iostream>
 
 Sprite::Sprite(GameObject& associated, const char* file) : Component(associated) {
@@ -8,24 +9,15 @@ Sprite::Sprite(GameObject& associated, const char* file) : Component(associated)
 }
 
 Sprite::~Sprite() {
-    SDL_DestroyTexture(texture);
+
 }
 
 void Sprite::Open(const char* file) { 
 
+    texture = Resources::GetImage(file);
     if (texture == nullptr) {
-
-        texture =  IMG_LoadTexture(Game::GetInstance().GetRenderer(), file);
-    }
-    else {
-
-        SDL_DestroyTexture(texture);
-
-        texture = IMG_LoadTexture(Game::GetInstance().GetRenderer(), file);
-        if (texture == nullptr) {
-            std::cout << "Texture == nullptr !!!" << SDL_GetError() << std::endl;
-            std::cin.get();
-        }
+        std::cout << "Texture == nullptr !!!" << SDL_GetError() << std::endl;
+        std::cin.get();
     }
 
     if (SDL_QueryTexture(texture, nullptr, nullptr, &width, &height)) {
@@ -44,16 +36,25 @@ void Sprite::SetClip(int x, int y, int w, int h) {
     clipRect.y = y;
     clipRect.w = w;
     clipRect.h = h;
+    
+    // std::cout << clipRect.x << " " << clipRect.y << " " <<  clipRect.w << " " << clipRect.h << std::endl;
+    
 }
 
 void Sprite::Render() {
+    // std::cout << associated.box.x << " " << associated.box.y << " " <<  associated.box.w << " " << associated.box.h << std::endl;
+    Render(associated.box.x, associated.box.y);
+}
 
+void Sprite::Render(float x, float y) {
+
+    // std::cout << x << " " << y << " " <<  w << " " << h << std::endl;
     SDL_Rect dstrect;
 
-    dstrect.x = associated.box.x;
-    dstrect.y = associated.box.y;
-    dstrect.w = associated.box.w;
-    dstrect.h = associated.box.h;
+    dstrect.x = x;
+    dstrect.y = y;
+    dstrect.w = clipRect.w;
+    dstrect.h = clipRect.h;
 
     if (SDL_RenderCopy(Game::GetInstance().GetRenderer(), this->texture, &clipRect, &dstrect)) {
         std::cout << "Erro Render Copy" << SDL_GetError() << std::endl;

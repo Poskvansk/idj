@@ -1,5 +1,4 @@
 #include "../include/State.hpp"
-#include <iostream>
 
 State::State() {
     quitRequested = false;
@@ -15,6 +14,15 @@ State::State() {
 
 	music = new Music("./assets/audio/stageState.ogg");
     music->Play(-1);
+
+	TileSet* tileSet = new TileSet(64, 64, "./assets/img/tileset.png");
+
+	GameObject* go_map = new GameObject();
+	TileMap* tileMap = new TileMap(*go_map, "./assets/map/tileMap.txt", tileSet);
+	go_map->AddComponent(tileMap);
+	go_map->box.x = 0;
+	go_map->box.y = 0;
+	objectArray.emplace_back(go_map);
 }
 
 State::~State() {

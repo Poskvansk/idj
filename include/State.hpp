@@ -9,6 +9,8 @@
 #include "Sound.hpp"
 #include "Sprite.hpp"
 #include "Music.hpp"
+#include "TileSet.hpp"
+#include "TileMap.hpp"
 
 class State {
     private:

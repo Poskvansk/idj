@@ -1,4 +1,5 @@
 #include "../include/Game.hpp"
+#include "../include/Resources.hpp"
 #include <iostream>
 
 Game* Game::instance = nullptr;
@@ -39,11 +40,11 @@ Game::Game(int width, int height, const char* title) {
     }
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
     if (renderer == nullptr) {
         std::cout << "Falha na inicializacao do renderizador!" << std::endl;
         std::cin.get();
     }
-
     
     srand(time(NULL));
     state = new State();
@@ -70,6 +71,10 @@ void Game::Run() {
         SDL_RenderPresent(renderer);
         SDL_Delay(33);
     }
+    
+    Resources::ClearImages();
+    Resources::ClearMusics();
+    Resources::ClearSounds();
 }
 
 State& Game::GetState() {

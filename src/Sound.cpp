@@ -30,7 +30,7 @@ Sound::~Sound() {
 	
 	if (chunk != nullptr) {
 		Stop();
-		Mix_FreeChunk(chunk);
+		// Mix_FreeChunk(chunk);
 	}
 }
 

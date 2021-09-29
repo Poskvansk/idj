@@ -2,8 +2,9 @@
 
 Vec2 Vec2::GetRotated(float theta) {
 	
-	x = x * std::cos(theta) - y * std::sin(theta);
-	y = y * std::cos(theta) + x * std::sin(theta);
+	float x, y;
+	x = this->x * std::cos(theta) - this->y * std::sin(theta);
+	y = this->y * std::cos(theta) + this->x * std::sin(theta);
 
 	return Vec2(x, y);
 }
